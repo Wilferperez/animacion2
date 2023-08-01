@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>animacion2</title>
+    <link rel="stylesheet" href="style.css" />
+    <script type="text/javascript" defer>
+        var $cont = document.querySelector(".cont");
+        var $elsArr = [].slice.call(document.querySelectorAll(".el"));
+        var $closeBtnsArr = [].slice.call(
+          document.querySelectorAll(".el__close-btn")
+        );
+  
+        console.log("cont >>> ", $cont);
+        console.log("elsArr >>> ", $elsArr);
+        console.log("closeBtnsArr >>> ", $closeBtnsArr);
+  
+        setTimeout(() => {
+          $cont.classList.remove("s--inactive");
+        }, 200);
+  
+        $elsArr.forEach((el) => {
+          console.log("$el >>> ", el);
+          el.addEventlistener("click", () => {
+            if (this.classList.contains("s--active")) return;
+            $cont.classList.add("S--el-active");
+            this.classList.add("s--active");
+          });
+        });
+  
+        $closeBtnsArr.forEach(function ($btn) {
+          $btn.addEventlistener("click", function (e) {
+            e.stopPropagation();
+            $cont.classList.remove("s--el-active");
+            document
+              .querySelectorAll(".el.s--active")
+              .classList.remove("s--active");
+          });
+        });
+      </script>
+  </head>
+  <body>
+    <div class="cont s--inactive">
+      <!--cont inner start -->
+      <div class="cont__inner">
+        <!--el star -->
+        <div class="el">
+          <div class="el __overflow">
+            <div class="el__inner">
+              <div class="el__bg"></div>
+              <div class="el__preview-cont">
+                <h2 class="el_heading">section 1</h2>
+              </div>
+              <div class="el_content">
+                <div class="el_text">whatever</div>
+                <div class="el__close-btn"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- el end -->
+      </div>
+      <!--cont inner end -->
+    </div>
+  </body>
+</html>
